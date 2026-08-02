@@ -1,0 +1,70 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Plasma and Sol Hub", "DarkTheme")
+
+-- MAIN
+local Main = Window:NewTab("Inf Ranked Rewards")
+local MainSection = Main:NewSection("Toggles")
+
+MainSection:NewToggle("bronze2", "bronze2 rewards", function(state)
+    if state then
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/b2"))()
+    else
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/idkscript2"))()
+    end
+end)
+
+MainSection:NewToggle("bronze3", "bronze3 rewards", function(state)
+    if state then
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/b3"))()
+    else
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/idkscript2"))()
+    end
+end)
+
+MainSection:NewToggle("silver2", "silver2 rewards", function(state)
+    if state then
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/s2"))()
+    else
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/idkscript2"))()
+    end
+end)
+
+MainSection:NewToggle("silver3", "silver3 rewards", function(state)
+    if state then
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/s3"))()
+    else
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/idkscript2"))()
+    end
+end)
+
+MainSection:NewToggle("gold2", "gold2 rewards", function(state)
+    if state then
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/g2"))()
+    else
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/idkscript2"))()
+    end
+end)
+
+MainSection:NewToggle("gold3", "gold3 rewards", function(state)
+    if state then
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/g3"))()
+    else
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/idkscript2"))()
+    end
+end)
+
+MainSection:NewToggle("diamond2", "diamond2 rewards", function(state)
+    if state then
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/d2"))()
+    else
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/idkscript2"))()
+    end
+end)
+
+MainSection:NewToggle("diamond3", "diamond3 rewards", function(state)
+    if state then
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/d3"))()
+    else
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/idkscript2"))()
+    end
+end)
