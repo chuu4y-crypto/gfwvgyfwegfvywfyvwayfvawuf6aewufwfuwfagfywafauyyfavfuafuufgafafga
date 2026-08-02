@@ -68,3 +68,51 @@ MainSection:NewToggle("diamond3", "10 lucky style spins", function(state)
    loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/idkscript2"))()
     end
 end)
+
+MainSection:NewToggle("pro1", "5 ability", function(state)
+    if state then
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/pro1"))()
+    else
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/idkscript2"))()
+    end
+end)
+
+MainSection:NewToggle("pro2", "500 gems", function(state)
+    if state then
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/pro2"))()
+    else
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/idkscript2"))()
+    end
+
+end)
+MainSection:NewToggle("legend1", "5 lucky style spins", function(state)
+    if state then
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/legend1"))()
+    else
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/idkscript2"))()
+    end
+end)
+
+MainSection:NewToggle("legend2", "750 gems", function(state)
+    if state then
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/legend2"))()
+    else
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/idkscript2"))()
+    end
+end)
+
+MainSection:NewToggle("master1", "500 feathers", function(state)
+    if state then
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/master1"))()
+    else
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/idkscript2"))()
+    end
+end)
+
+MainSection:NewToggle("master2", "1000 gems", function(state)
+    if state then
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/master2"))()
+    else
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/idkscript2"))()
+    end
+end)
