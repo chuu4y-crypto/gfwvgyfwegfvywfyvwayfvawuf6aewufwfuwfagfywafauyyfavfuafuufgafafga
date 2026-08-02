@@ -5,7 +5,7 @@ local Window = Library.CreateLib("Plasma and Sol Hub", "DarkTheme")
 local Main = Window:NewTab("Inf Ranked Rewards")
 local MainSection = Main:NewSection("Toggles")
 
-MainSection:NewToggle("bronze2", "bronze2 rewards", function(state)
+MainSection:NewToggle("bronze2", "3 lucky style", function(state)
     if state then
  loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/b2"))()
     else
@@ -13,7 +13,7 @@ MainSection:NewToggle("bronze2", "bronze2 rewards", function(state)
     end
 end)
 
-MainSection:NewToggle("bronze3", "bronze3 rewards", function(state)
+MainSection:NewToggle("bronze3", "2,500 yen", function(state)
     if state then
  loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/b3"))()
     else
@@ -21,7 +21,7 @@ MainSection:NewToggle("bronze3", "bronze3 rewards", function(state)
     end
 end)
 
-MainSection:NewToggle("silver2", "silver2 rewards", function(state)
+MainSection:NewToggle("silver2", "5 lucky ability spins", function(state)
     if state then
  loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/s2"))()
     else
@@ -29,7 +29,7 @@ MainSection:NewToggle("silver2", "silver2 rewards", function(state)
     end
 end)
 
-MainSection:NewToggle("silver3", "silver3 rewards", function(state)
+MainSection:NewToggle("silver3", "15 styles spins", function(state)
     if state then
  loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/s3"))()
     else
@@ -37,7 +37,7 @@ MainSection:NewToggle("silver3", "silver3 rewards", function(state)
     end
 end)
 
-MainSection:NewToggle("gold2", "gold2 rewards", function(state)
+MainSection:NewToggle("gold2", "7 lucky style spins", function(state)
     if state then
  loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/g2"))()
     else
@@ -45,7 +45,7 @@ MainSection:NewToggle("gold2", "gold2 rewards", function(state)
     end
 end)
 
-MainSection:NewToggle("gold3", "gold3 rewards", function(state)
+MainSection:NewToggle("gold3", "8 lucky ability spins", function(state)
     if state then
  loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/g3"))()
     else
@@ -53,7 +53,7 @@ MainSection:NewToggle("gold3", "gold3 rewards", function(state)
     end
 end)
 
-MainSection:NewToggle("diamond2", "diamond2 rewards", function(state)
+MainSection:NewToggle("diamond2", "5,000 yen", function(state)
     if state then
  loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/d2"))()
     else
@@ -61,7 +61,7 @@ MainSection:NewToggle("diamond2", "diamond2 rewards", function(state)
     end
 end)
 
-MainSection:NewToggle("diamond3", "diamond3 rewards", function(state)
+MainSection:NewToggle("diamond3", "10 lucky style spins", function(state)
     if state then
  loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/d3"))()
     else
