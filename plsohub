@@ -262,66 +262,46 @@ local Slider = ExploitTab:CreateSlider({
    end,
 })
 
--- Place this variable and setup ABOVE your MainTab:CreateSlider script block
+-- Place this variable and hook setup ABOVE your MainTab:CreateSlider script block
 local currentSpikeMultiplier = 1.0 -- 1.0 is default unchanged speed
-local RunService = game:GetService("RunService")
-local Players = game:GetService("Players")
-local Workspace = game:GetService("Workspace")
-local player = Players.LocalPlayer
 
--- Function to locate the game ball dynamically
-local function getGameBall()
-    return Workspace:FindFirstChild("Ball") 
-        or Workspace:FindFirstChild("Volleyball") 
-        or Workspace:FindFirstChild("GameBall")
-end
+-- Metatable Hook to intercept game Network traffic
+local gmt = getrawmetatable(game)
+setreadonly(gmt, false)
+local oldNamecall = gmt.__namecall
 
-local lastVelocity = Vector3.new(0, 0, 0)
-
-RunService.RenderStepped:Connect(function()
-    local char = player.Character
-    if not char then return end
+gmt.__namecall = newcclosure(function(self, ...)
+    local method = getnamecallmethod()
+    local args = {...}
     
-    local ball = getGameBall()
-    if ball and ball:IsA("BasePart") then
-        local currentVelocity = ball.AssemblyLinearVelocity
-        
-        -- Detect if the ball experienced a sudden spike in velocity (a hit)
-        if currentVelocity.Magnitude > lastVelocity.Magnitude + 20 and currentSpikeMultiplier > 1.0 then
-            
-            -- Verify if YOU were the one who made contact with the ball
-            -- This checks if any part of your character model is touching the ball
-            local parts = Workspace:GetPartsInPart(ball)
-            local hitByMe = false
-            
-            for _, part in ipairs(parts) do
-                if part:IsDescendantOf(char) then
-                    hitByMe = true
-                    break
-                end
-            end
-            
-            -- If you hit it, multiply the new trajectory across the court instantly
-            if hitByMe then
-                ball.AssemblyLinearVelocity = currentVelocity * currentSpikeMultiplier
+    -- Intercept the exact remote event the game uses to communicate hit physics
+    if method == "FireServer" and tostring(self) == "BallEvent" or tostring(self):match("Hit") or tostring(self):match("Spike") then
+        -- Games usually send parameters like: (ActionType, TargetDirection, Power)
+        -- We loop through arguments to find where the baseline power integer is being passed
+        for i, arg in ipairs(args) do
+            if type(arg) == "number" and arg >= 10 then -- Typically baseline powers are 10-100
+                args[i] = arg * currentSpikeMultiplier
             end
         end
-        
-        -- Keep track of the velocity to find the next sudden change
-        lastVelocity = currentVelocity
+        return oldNamecall(self, unpack(args))
     end
+    
+    return oldNamecall(self, ...)
 end)
 
--- Your Rayfield Slider configuration:
+setreadonly(gmt, true)
+
+-- Your updated Rayfield Slider configuration:
 local Slider = ExploitTab:CreateSlider({
    Name = "Spike Multiplier",
-   Range = {1, 5}, 
+   Range = {1, 5}, -- 1x is standard game limits, 5x is extremely fast
    Increment = 0.1,
    Suffix = "x Power",
    CurrentValue = 1, 
-   Flag = "GlobalSpike1", 
+   Flag = "NetworkSpike1", 
    Callback = function(Value)
        currentSpikeMultiplier = Value
    end,
 })
+
 
