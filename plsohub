@@ -153,10 +153,10 @@ local Toggle = MainTab:CreateToggle({
     end,
 })
 
-local ExploitsTab = Window:CreateTab("Exploits", nil) -- Title, Image
-local Section = ExploitsTab:CreateSection("Exploits")
+local ExploitTab = Window:CreateTab("Exploits", nil) -- Title, Image
+local Section = ExploitTab:CreateSection("Cheats")
 
-local Toggle = ExploitsTab:CreateToggle({
+local Toggle = ExploitTab:CreateToggle({
     Name = "Desync",
     CurrentValue = false,
     Flag = "Toggle9",
