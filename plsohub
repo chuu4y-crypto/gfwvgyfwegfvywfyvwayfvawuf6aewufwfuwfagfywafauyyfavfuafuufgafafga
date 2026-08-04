@@ -169,8 +169,7 @@ local Toggle = ExploitTab:CreateToggle({
     end,
 })
 
--- Place this variable and loop ABOVE your MainTab:CreateSlider script block
-local currentSpeed = 27
+local currentSpeed = 27 -- Set exactly to Volleyball Legends' baseline speed
 local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
@@ -185,19 +184,19 @@ RunService.RenderStepped:Connect(function()
     end
 end)
 
--- Your adjusted Rayfield Slider configuration:
+-- Your Rayfield Slider configuration:
 local Slider = ExploitTab:CreateSlider({
    Name = "Walkspeed",
-   Range = {27, 300},
+   Range = {27, 150}, -- Minimum locked to the game's actual base speed
    Increment = 1,
    Suffix = " Speed",
-   CurrentValue = 27, -- Set to 16 so it starts at default Roblox speed
-   Flag = "Slider1", 
+   CurrentValue = 27, 
+   Flag = "VBL_Walkspeed_Slider", 
    Callback = function(Value)
-       -- Updates the background loop variable instantly when you slide
        currentSpeed = Value
    end,
 })
+
 
 local Toggle = ExploitTab:CreateToggle({
     Name = "Redirection",
@@ -262,46 +261,34 @@ local Slider = ExploitTab:CreateSlider({
    end,
 })
 
--- Place this variable and hook setup ABOVE your MainTab:CreateSlider script block
-local currentSpikeMultiplier = 1.0 -- 1.0 is default unchanged speed
+local currentSpikeMultiplier = 1.0 
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
 
--- Metatable Hook to intercept game Network traffic
-local gmt = getrawmetatable(game)
-setreadonly(gmt, false)
-local oldNamecall = gmt.__namecall
-
-gmt.__namecall = newcclosure(function(self, ...)
-    local method = getnamecallmethod()
-    local args = {...}
-    
-    -- Intercept the exact remote event the game uses to communicate hit physics
-    if method == "FireServer" and tostring(self) == "BallEvent" or tostring(self):match("Hit") or tostring(self):match("Spike") then
-        -- Games usually send parameters like: (ActionType, TargetDirection, Power)
-        -- We loop through arguments to find where the baseline power integer is being passed
-        for i, arg in ipairs(args) do
-            if type(arg) == "number" and arg >= 10 then -- Typically baseline powers are 10-100
-                args[i] = arg * currentSpikeMultiplier
-            end
+RunService.RenderStepped:Connect(function()
+    local char = player.Character
+    if char then
+        -- Modifies the active movement and striking multiplier flags in the game's framework
+        if char:GetAttribute("SpikeSpeed") then
+            char:SetAttribute("SpikeSpeed", 100 * currentSpikeMultiplier)
         end
-        return oldNamecall(self, unpack(args))
+        if char:GetAttribute("Power") then
+            char:SetAttribute("Power", 100 * currentSpikeMultiplier)
+        end
     end
-    
-    return oldNamecall(self, ...)
 end)
 
-setreadonly(gmt, true)
-
--- Your updated Rayfield Slider configuration:
+-- Your Rayfield Slider configuration:
 local Slider = ExploitTab:CreateSlider({
    Name = "Spike Multiplier",
-   Range = {1, 5}, -- 1x is standard game limits, 5x is extremely fast
+   Range = {1, 5}, 
    Increment = 0.1,
    Suffix = "x Power",
    CurrentValue = 1, 
-   Flag = "NetworkSpike1", 
+   Flag = "VBL_Spike_Slider", 
    Callback = function(Value)
        currentSpikeMultiplier = Value
    end,
 })
-
 
