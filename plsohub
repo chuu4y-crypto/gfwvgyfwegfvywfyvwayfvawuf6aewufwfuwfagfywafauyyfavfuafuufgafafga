@@ -152,3 +152,5 @@ local Toggle = MainTab:CreateToggle({
         end
     end,
 })
+
+local MainTab = Window:CreateTab("Exploits", nil) -- Title, Image
