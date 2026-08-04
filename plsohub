@@ -188,7 +188,7 @@ end)
 -- Your adjusted Rayfield Slider configuration:
 local Slider = ExploitTab:CreateSlider({
    Name = "Walkspeed Slider",
-   Range = {0, 300},
+   Range = {26, 300},
    Increment = 1,
    Suffix = " Speed",
    CurrentValue = 16, -- Set to 16 so it starts at default Roblox speed
