@@ -187,7 +187,7 @@ end)
 
 -- Your adjusted Rayfield Slider configuration:
 local Slider = ExploitTab:CreateSlider({
-   Name = "Walkspeed Slider",
+   Name = "Walkspeed",
    Range = {27, 300},
    Increment = 1,
    Suffix = " Speed",
@@ -251,7 +251,7 @@ end)
 
 -- Your updated Rayfield Slider configuration:
 local Slider = ExploitTab:CreateSlider({
-   Name = "JumpPower Slider",
+   Name = "JumpPower",
    Range = {50, 65}, -- Restriced range to prevent extreme launches
    Increment = 1,
    Suffix = " Boost",
@@ -259,5 +259,41 @@ local Slider = ExploitTab:CreateSlider({
    Flag = "JumpSlider1", 
    Callback = function(Value)
        currentJump = Value
+   end,
+})
+
+-- Place this variable and loop ABOVE your MainTab:CreateSlider script block
+local currentSpike = 100 -- 100 is the baseline original spike speed
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+RunService.RenderStepped:Connect(function()
+    local char = player.Character
+    if char then
+        -- Targets common sports module attributes for ball manipulation
+        if char:GetAttribute("SpikePower") then
+            char:SetAttribute("SpikePower", currentSpike)
+        end
+        if char:GetAttribute("HitPower") then
+            char:SetAttribute("HitPower", currentSpike)
+        end
+        if char:GetAttribute("ServePower") then
+            char:SetAttribute("ServePower", currentSpike)
+        end
+    end
+end)
+
+-- Your updated Rayfield Slider configuration:
+local Slider = ExploitTab:CreateSlider({
+   Name = "Spike Speed",
+   Range = {100, 300}, -- Minimum is locked to the original baseline speed (100)
+   Increment = 5,
+   Suffix = " Speed",
+   CurrentValue = 100, -- Starts precisely at original speed
+   Flag = "SpikeSlider1", 
+   Callback = function(Value)
+       -- Updates the active spike multiplier instantly
+       currentSpike = Value
    end,
 })
