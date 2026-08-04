@@ -191,7 +191,7 @@ local Slider = ExploitTab:CreateSlider({
    Range = {26, 300},
    Increment = 1,
    Suffix = " Speed",
-   CurrentValue = 16, -- Set to 16 so it starts at default Roblox speed
+   CurrentValue = 26, -- Set to 16 so it starts at default Roblox speed
    Flag = "Slider1", 
    Callback = function(Value)
        -- Updates the background loop variable instantly when you slide
