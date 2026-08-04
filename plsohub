@@ -261,34 +261,4 @@ local Slider = ExploitTab:CreateSlider({
    end,
 })
 
-local currentSpikeMultiplier = 1.0 
-local RunService = game:GetService("RunService")
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-
-RunService.RenderStepped:Connect(function()
-    local char = player.Character
-    if char then
-        -- Modifies the active movement and striking multiplier flags in the game's framework
-        if char:GetAttribute("SpikeSpeed") then
-            char:SetAttribute("SpikeSpeed", 100 * currentSpikeMultiplier)
-        end
-        if char:GetAttribute("Power") then
-            char:SetAttribute("Power", 100 * currentSpikeMultiplier)
-        end
-    end
-end)
-
--- Your Rayfield Slider configuration:
-local Slider = ExploitTab:CreateSlider({
-   Name = "Spike Multiplier",
-   Range = {1, 5}, 
-   Increment = 0.1,
-   Suffix = "x Power",
-   CurrentValue = 1, 
-   Flag = "VBL_Spike_Slider", 
-   Callback = function(Value)
-       currentSpikeMultiplier = Value
-   end,
-})
 
