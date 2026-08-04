@@ -211,3 +211,53 @@ local Toggle = ExploitTab:CreateToggle({
         end
     end,
 })
+
+local currentJump = 50 -- 50 is default physics behavior
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local player = Players.LocalPlayer
+
+-- Listen for the player attempting to jump
+UserInputService.JumpRequest:Connect(function()
+    local char = player.Character
+    if char then
+        local rootPart = char:FindFirstChild("HumanoidRootPart")
+        local hum = char:FindFirstChildOfClass("Humanoid")
+        
+        -- Only apply velocity boost if the character is grounded and a custom power is active
+        if rootPart and hum and hum:GetState() ~= Enum.HumanoidStateType.Freefall and currentJump > 50 then
+            -- Scale velocity upward proportional to the slider value
+            local upwardBoost = (currentJump - 50) * 1.5
+            rootPart.AssemblyLinearVelocity = Vector3.new(
+                rootPart.AssemblyLinearVelocity.X,
+                rootPart.AssemblyLinearVelocity.Y + upwardBoost,
+                rootPart.AssemblyLinearVelocity.Z
+            )
+        end
+    end
+end)
+
+-- Alternate mechanism: Checking for custom game attributes if present
+RunService.RenderStepped:Connect(function()
+    local char = player.Character
+    if char then
+        -- Some sports modules store "JumpPower" or "JumpBoost" directly as Attributes
+        if char:GetAttribute("JumpPower") then
+            char:SetAttribute("JumpPower", currentJump)
+        end
+    end
+end)
+
+-- Your Rayfield Slider configuration for JumpPower:
+local JumpSlider = MainTab:CreateSlider({
+   Name = "JumpPower Slider",
+   Range = {50, 250}, -- Starts at 50 (normal default velocity limits)
+   Increment = 1,
+   Suffix = " Boost",
+   CurrentValue = 50,
+   Flag = "JumpSlider1", 
+   Callback = function(Value)
+       currentJump = Value
+   end,
+})
