@@ -154,3 +154,16 @@ local Toggle = MainTab:CreateToggle({
 })
 
 local MainTab = Window:CreateTab("Exploits", nil) -- Title, Image
+
+local Toggle = ExploitsTab:CreateToggle({
+    Name = "Desync",
+    CurrentValue = false,
+    Flag = "Toggle9",
+    Callback = function(Value)
+        if Value then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/Desync%20on"))() 
+        else
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/Desync%20off"))()
+        end
+    end,
+})
