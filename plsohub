@@ -169,6 +169,19 @@ local Toggle = ExploitTab:CreateToggle({
     end,
 })
 
+local Toggle = ExploitTab:CreateToggle({
+    Name = "Redirection",
+    CurrentValue = false,
+    Flag = "Toggle10",
+    Callback = function(Value)
+        if Value then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/redi%20on"))() 
+        else
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/redi%20off"))()
+        end
+    end,
+})
+
 local currentSpeed = 27 -- Set exactly to Volleyball Legends' baseline speed
 local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
@@ -195,20 +208,6 @@ local Slider = ExploitTab:CreateSlider({
    Callback = function(Value)
        currentSpeed = Value
    end,
-})
-
-
-local Toggle = ExploitTab:CreateToggle({
-    Name = "Redirection",
-    CurrentValue = false,
-    Flag = "Toggle10",
-    Callback = function(Value)
-        if Value then
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/redi%20on"))() 
-        else
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/redi%20off"))()
-        end
-    end,
 })
 
 -- Place this variable and loop ABOVE your MainTab:CreateSlider script block
