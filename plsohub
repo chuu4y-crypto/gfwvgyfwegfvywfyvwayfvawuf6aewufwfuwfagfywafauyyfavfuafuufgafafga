@@ -170,7 +170,7 @@ local Toggle = ExploitTab:CreateToggle({
 })
 
 -- Place this variable and loop ABOVE your MainTab:CreateSlider script block
-local currentSpeed = 16
+local currentSpeed = 27
 local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
