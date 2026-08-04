@@ -252,7 +252,7 @@ end)
 -- Your Rayfield Slider configuration for JumpPower:
 local Slider = ExploitTab:CreateSlider({
    Name = "JumpPower Slider",
-   Range = {50, 250}, -- Starts at 50 (normal default velocity limits)
+   Range = {50, 65}, -- Starts at 50 (normal default velocity limits)
    Increment = 1,
    Suffix = " Boost",
    CurrentValue = 50,
