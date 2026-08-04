@@ -188,10 +188,10 @@ end)
 -- Your adjusted Rayfield Slider configuration:
 local Slider = ExploitTab:CreateSlider({
    Name = "Walkspeed Slider",
-   Range = {26, 300},
+   Range = {27, 300},
    Increment = 1,
    Suffix = " Speed",
-   CurrentValue = 26, -- Set to 16 so it starts at default Roblox speed
+   CurrentValue = 27, -- Set to 16 so it starts at default Roblox speed
    Flag = "Slider1", 
    Callback = function(Value)
        -- Updates the background loop variable instantly when you slide
@@ -212,7 +212,8 @@ local Toggle = ExploitTab:CreateToggle({
     end,
 })
 
-local currentJump = 50 -- 50 is default physics behavior
+-- Place this variable and loop ABOVE your MainTab:CreateSlider script block
+local currentJump = 50 -- 50 is default behavior
 local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
 local UserInputService = game:GetService("UserInputService")
@@ -225,10 +226,10 @@ UserInputService.JumpRequest:Connect(function()
         local rootPart = char:FindFirstChild("HumanoidRootPart")
         local hum = char:FindFirstChildOfClass("Humanoid")
         
-        -- Only apply velocity boost if the character is grounded and a custom power is active
+        -- Only apply velocity boost if the character is on the ground
         if rootPart and hum and hum:GetState() ~= Enum.HumanoidStateType.Freefall and currentJump > 50 then
-            -- Scale velocity upward proportional to the slider value
-            local upwardBoost = (currentJump - 50) * 1.5
+            -- Scale velocity upward proportional to the smaller range
+            local upwardBoost = (currentJump - 50) * 2.5
             rootPart.AssemblyLinearVelocity = Vector3.new(
                 rootPart.AssemblyLinearVelocity.X,
                 rootPart.AssemblyLinearVelocity.Y + upwardBoost,
@@ -238,24 +239,23 @@ UserInputService.JumpRequest:Connect(function()
     end
 end)
 
--- Alternate mechanism: Checking for custom game attributes if present
+-- Alternate attribute modifier for sports modules
 RunService.RenderStepped:Connect(function()
     local char = player.Character
     if char then
-        -- Some sports modules store "JumpPower" or "JumpBoost" directly as Attributes
         if char:GetAttribute("JumpPower") then
             char:SetAttribute("JumpPower", currentJump)
         end
     end
 end)
 
--- Your Rayfield Slider configuration for JumpPower:
+-- Your updated Rayfield Slider configuration:
 local Slider = ExploitTab:CreateSlider({
    Name = "JumpPower Slider",
-   Range = {50, 65}, -- Starts at 50 (normal default velocity limits)
+   Range = {50, 65}, -- Restriced range to prevent extreme launches
    Increment = 1,
    Suffix = " Boost",
-   CurrentValue = 50,
+   CurrentValue = 50, -- Starts at default standard level
    Flag = "JumpSlider1", 
    Callback = function(Value)
        currentJump = Value
