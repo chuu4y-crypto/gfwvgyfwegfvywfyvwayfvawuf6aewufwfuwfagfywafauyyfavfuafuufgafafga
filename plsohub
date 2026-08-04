@@ -182,34 +182,6 @@ local Toggle = ExploitTab:CreateToggle({
     end,
 })
 
-local currentSpeed = 27 -- Set exactly to Volleyball Legends' baseline speed
-local RunService = game:GetService("RunService")
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-
-RunService.RenderStepped:Connect(function()
-    local char = player.Character
-    if char then
-        local hum = char:FindFirstChildOfClass("Humanoid")
-        if hum then
-            hum.WalkSpeed = currentSpeed
-        end
-    end
-end)
-
--- Your Rayfield Slider configuration:
-local Slider = ExploitTab:CreateSlider({
-   Name = "Walkspeed",
-   Range = {27, 150}, -- Minimum locked to the game's actual base speed
-   Increment = 1,
-   Suffix = " Speed",
-   CurrentValue = 27, 
-   Flag = "VBL_Walkspeed_Slider", 
-   Callback = function(Value)
-       currentSpeed = Value
-   end,
-})
-
 -- Place this variable and loop ABOVE your MainTab:CreateSlider script block
 local currentJump = 50 -- 50 is default behavior
 local RunService = game:GetService("RunService")
