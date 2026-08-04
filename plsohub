@@ -261,4 +261,67 @@ local Slider = ExploitTab:CreateSlider({
    end,
 })
 
+-- Place this variables and setup ABOVE your MainTab:CreateSlider script block
+local airControlPower = 0 -- Default 0 means no extra custom air control
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local Workspace = game:GetService("Workspace")
+
+local player = Players.LocalPlayer
+local camera = Workspace.CurrentCamera
+
+RunService.RenderStepped:Connect(function()
+    local char = player.Character
+    if not char then return end
+    
+    local rootPart = char:FindFirstChild("HumanoidRootPart")
+    local hum = char:FindFirstChildOfClass("Humanoid")
+    
+    -- Check if character is in the air and air control is turned up
+    if rootPart and hum and hum:GetState() == Enum.HumanoidStateType.Freefall and airControlPower > 0 then
+        local moveDirection = Vector3.new(0, 0, 0)
+        
+        -- Detect standard movement keys manually
+        if UserInputService:IsKeyDown(Enum.KeyCode.W) then
+            moveDirection = moveDirection + camera.CFrame.LookVector
+        end
+        if UserInputService:IsKeyDown(Enum.KeyCode.S) then
+            moveDirection = moveDirection - camera.CFrame.LookVector
+        end
+        if UserInputService:IsKeyDown(Enum.KeyCode.A) then
+            moveDirection = moveDirection - camera.CFrame.RightVector
+        end
+        if UserInputService:IsKeyDown(Enum.KeyCode.D) then
+            moveDirection = moveDirection + camera.CFrame.RightVector
+        end
+        
+        -- Flatten the vector so moving the camera up/down doesn't make you fly or sink
+        moveDirection = Vector3.new(moveDirection.X, 0, moveDirection.Z)
+        
+        if moveDirection.Magnitude > 0 then
+            moveDirection = moveDirection.Unit
+            
+            -- Apply direct horizontal physics velocity while preserving your vertical jump/fall arc
+            rootPart.AssemblyLinearVelocity = Vector3.new(
+                moveDirection.X * airControlPower,
+                rootPart.AssemblyLinearVelocity.Y,
+                moveDirection.Z * airControlPower
+            )
+        end
+    end
+end)
+
+-- Your updated Rayfield Slider configuration:
+local Slider = ExploitTab:CreateSlider({
+   Name = "Air Speed",
+   Range = {0, 60}, -- 0 is disabled, 27 matches your natural base run speed, 60 is fast
+   Increment = 1,
+   Suffix = " Studs/s",
+   CurrentValue = 0, -- Starts disabled
+   Flag = "VBL_AirControl_Slider", 
+   Callback = function(Value)
+       airControlPower = Value
+   end,
+})
 
